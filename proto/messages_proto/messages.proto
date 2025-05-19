@@ -1,0 +1,28 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package messages;
+
+option go_package = "../../pkg/api";
+
+// MessageService - сервис для работы с сообщениями
+service MessageService {
+  rpc Send (MessageRequest) returns (google.protobuf.Empty);
+  rpc Messages (google.protobuf.Empty) returns (MessageResponse);
+}
+
+// Message - структура сообщения
+message Message {
+  string id = 1;
+  string time = 2;
+  string text = 3;
+}
+
+// MessageRequest - структура запроса
+message MessageRequest {
+  repeated Message message = 1;
+}
+
+//  MessageResponse - структура ответа
+message MessageResponse {
+  repeated Message message = 1;
+}
